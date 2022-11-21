@@ -4,7 +4,7 @@ from collections import OrderedDict
 import pickle
 
 class Lenet5:
-    def __init__(self, input_dim=(1, 28, 28), 
+    def __init__(self, input_dim=(1, 32, 32),
                  conv_param={'filter_num1':6, 'filter_size1':3,'filter_num2':16, 'filter_size2':3, 'pad':1, 'stride':1},
                  hidden_size1=120,hidden_size2=84, output_size=10, weight_init_std=0.01):
         filter_num1 = conv_param['filter_num1']
