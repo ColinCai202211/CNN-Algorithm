@@ -3,8 +3,10 @@ from lenet5 import Lenet5
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from trainer import Trainer
+import time
 
 #载入数据集
+start = time.perf_counter()
 mnist=tf.keras.datasets.mnist
 (x_train,y_train),(x_test,y_test)=mnist.load_data()
 
@@ -25,7 +27,7 @@ y_test=temp
 # 训练次数
 max_epochs = 10
 
-network = Lenet5(input_dim=(1,28,28), 
+network = Lenet5(input_dim=(1,28,28),
                  conv_param={'filter_num1':6, 'filter_size1':3,'filter_num2':16, 'filter_size2':3, 'pad':1, 'stride':1},
                  hidden_size1=120,hidden_size2=84, output_size=10, weight_init_std=0.01)
 
@@ -35,6 +37,8 @@ trainer = Trainer(network, x_train, y_train, x_test, y_test,
                   optimizer='Adam', optimizer_param={'lr': 0.001},
                   evaluate_sample_num_per_epoch=1000)
 trainer.train()
+end = time.perf_counter()
+print('Running time: %s Seconds', end-start)
 
 # 参数保存
 network.save_params("params.pkl")

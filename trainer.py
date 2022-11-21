@@ -43,8 +43,8 @@ class Trainer:
         
         loss = self.network.loss(x_batch, t_batch)
         self.train_loss_list.append(loss)
-        if self.verbose:
-            print("train loss:" + str(loss))
+        # if self.verbose:
+        #     print("train loss:" + str(loss))
         
         #每个epoch结束
         if self.current_iter % self.iter_per_epoch == 0:
